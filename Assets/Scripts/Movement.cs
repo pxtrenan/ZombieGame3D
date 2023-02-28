@@ -12,16 +12,16 @@ public class Movement : MonoBehaviour
     public float lookSpeed = 2.0f;
     public float lookXLimit = 45.0f;
 
-    CharacterController characterController;
-    Vector3 moveDirection = Vector3.zero;
-    float rotationX = 0;
+    //CharacterController characterController; 
+    private Vector3 moveDirection = Vector3.zero;
+    private float rotationX = 0;
 
     [HideInInspector]
     public bool canMove = true;
 
     void Start()
     {
-        characterController = GetComponent<CharacterController>();
+        //characterController = playerCamera.GetComponent<CharacterController>();
 
         // Lock cursor
         Cursor.lockState = CursorLockMode.Locked;
@@ -40,7 +40,7 @@ public class Movement : MonoBehaviour
         float movementDirectionY = moveDirection.y;
         moveDirection = (forward * curSpeedX) + (right * curSpeedY);
 
-        if (Input.GetButton("Jump") && canMove && characterController.isGrounded)
+        if (Input.GetButton("Jump") && canMove) //&& characterController.isGrounded)
         {
             moveDirection.y = jumpSpeed;
         }
@@ -52,13 +52,13 @@ public class Movement : MonoBehaviour
         // Apply gravity. Gravity is multiplied by deltaTime twice (once here, and once below
         // when the moveDirection is multiplied by deltaTime). This is because gravity should be applied
         // as an acceleration (ms^-2)
-        if (!characterController.isGrounded)
-        {
-            moveDirection.y -= gravity * Time.deltaTime;
-        }
+        //if (!characterController.isGrounded)
+        //{
+        //    moveDirection.y -= gravity * Time.deltaTime;
+        //}
 
         // Move the controller
-        characterController.Move(moveDirection * Time.deltaTime);
+        //characterController.Move(moveDirection * Time.deltaTime);
 
         // Player and Camera rotation
         if (canMove)

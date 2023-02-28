@@ -22,8 +22,10 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
+           if (PlayerTarget != null)
+    {
         enemy.SetDestination(PlayerTarget.position);
-
+    }
        
 
     }
